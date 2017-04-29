@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="index.css">
+
+  <style>
+
+  .jumbotron {
+  background: url("http://www.hooch.net/wp-content/uploads/sites/2/2016/11/sonia-merino-and-nasta-merino.jpeg") no-repeat center center;
+  background-size: 100% auto;
+  color: white;
+}
+
+
+
+
+  </style>
+
+  
+</head>
+<header>
+
+<div class="jumbotron">
+  <h1>The Psychic Game</h1>
+  <p></p>
+
+  </div>
+
+
+  </header>
+
+<body>
+  
+        <header>
+        </header>
+          <h1 id = "instrucions">Guess What Letter I'm thinking of</h1>
+          <br>
+        
+        </div>
+    <
+        <div id="game">
+          
+            <h1 id="wins">Wins: </h1>
+            <h1 id="losses">Losses: </h1>
+            <h1 id="guessLeft">Guesses Left: </h1>
+            <h1 id="let">Your Guesses so far: </h1>
+    
+    <script>
+
+
+
+
+var Choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+
+var wins = 0;
+var losses = 0;
+var guesses = 9;
+var guessesLeft = 9;
+var guessedLetters = [];
+var letterToGuess = null;
+
+
+var cguess = Choices [Math.floor(Math.random() * Choices.length)];
+
+
+
+
+
+var updateGuessesLeft = function() {
+ 
+  document.querySelector('#guessLeft').innerHTML = "Guesses left: " + guessesLeft;
+};
+
+var updateLetterToGuess = function() {
+  this.letterToGuess = this.cguess[Math.floor(Math.random() * this.cguess.length)];
+};
+var updateGuessesSoFar = function() {
+ 
+  document.querySelector('#let').innerHTML = "Your Guesses so far: " + guessedLetters.join(', ');
+};
+
+var reset = function() {
+  totalGuesses = 9;
+  guessesLeft = 9;
+  guessedLetters = [];
+
+  updateLetterToGuess();
+  updateGuessesLeft();
+  updateGuessesSoFar();
+}
+
+updateLetterToGuess();
+updateGuessesLeft();
+
+
+
+document.onkeyup = function(event) {
+    guessesLeft--;
+  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+  guessedLetters.push(userGuess);
+  updateGuessesLeft();
+  updateGuessesSoFar();
+
+        if (guessesLeft > 0){
+            if (userGuess == letterToGuess){
+                wins++;
+                document.querySelector('#wins').innerHTML = "Wins: " + wins;
+                document.write("You Won!!! Press refresh to Play again");
+                reset();
+            }
+        }else if(guessesLeft == 0){
+          
+            losses++;
+            document.querySelector('#losses').innerHTML = "Losses: " + losses;
+            document.write("You Lossed... Press Refresh to Try again!!!");
+            
+            reset();
+        }
+};
+
+
+
+
+
+
+    </script>
+
+
+    
+
+  </body>
+</html>
